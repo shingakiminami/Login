@@ -1,7 +1,6 @@
 package jp.co.aforce;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +17,7 @@ public class LoginAction extends HttpServlet {
 
 	protected  void doPost(
 		HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
+//		PrintWriter out = response.getWriter();
 
 		HttpSession session = request.getSession();
 
@@ -39,8 +38,12 @@ public class LoginAction extends HttpServlet {
 				request.getRequestDispatcher("../jsp/login-in.jsp").forward(request, response);
 
 			} else {
-				out.println("<p>IDもしくはパスワードが間違えています</p>");
-				request.setAttribute("id",c.getId());
+//				out.println("<p>IDもしくはパスワードが間違えています</p>");
+//				request.setAttribute("id",c.getId());
+
+				request.setAttribute("loginErrorMessage","入力内容に誤りがあります。");
+				getServletContext().getRequestDispatcher("../jsp/login-in.jsp").forward(request, response);
+
 
 			}
 
